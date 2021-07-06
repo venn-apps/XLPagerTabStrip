@@ -52,6 +52,10 @@ public struct ButtonBarPagerTabStripSettings {
         public var selectedBarHeight: CGFloat = 5
         public var selectedBarVerticalAlignment: SelectedBarVerticalAlignment = .bottom
 
+        // Custom Venn Apps properties
+        public var selectedButtonItemBackgroundColor: UIColor?
+        public var selectedButtonItemTitleColor: UIColor?
+
         public var buttonBarItemBackgroundColor: UIColor?
         public var buttonBarItemFont = UIFont.systemFont(ofSize: 18)
         public var buttonBarItemLeftRightMargin: CGFloat = 8
@@ -329,12 +333,17 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
 
         let childController = viewControllers[indexPath.item] as! IndicatorInfoProvider // swiftlint:disable:this force_cast
         let indicatorInfo = childController.indicatorInfo(for: self)
+        let isSelected = indexPath.row == currentIndex
 
         cell.label.text = indicatorInfo.title
         cell.label.font = settings.style.buttonBarItemFont
-        cell.label.textColor = settings.style.buttonBarItemTitleColor ?? cell.label.textColor
+        cell.label.textColor = isSelected
+            ? settings.style.selectedButtonItemTitleColor ?? cell.label.textColor
+            : settings.style.buttonBarItemTitleColor ?? cell.label.textColor
         cell.contentView.backgroundColor = settings.style.buttonBarItemBackgroundColor ?? cell.contentView.backgroundColor
-        cell.backgroundColor = settings.style.buttonBarItemBackgroundColor ?? cell.backgroundColor
+        cell.backgroundColor = isSelected
+            ? settings.style.selectedButtonItemBackgroundColor ?? cell.backgroundColor
+            : settings.style.buttonBarItemBackgroundColor ?? cell.backgroundColor
         if let image = indicatorInfo.image {
             cell.imageView.image = image
         }
