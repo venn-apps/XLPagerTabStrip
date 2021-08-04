@@ -8,16 +8,11 @@ let package = Package(
   products: [
     .library(name: "XLPagerTabStrip", targets: ["XLPagerTabStrip"])
   ],
-  dependencies: [
-    .package(
-      url: "https://github.com/venn-apps/FXPageControl.git",
-      .branch("master")
-    )
-  ],
+  dependencies: [],
   targets: [
     .target(
       name: "XLPagerTabStrip",
-      dependencies: ["FXPageControl"],
+      dependencies: [],
       path: "Sources",
       resources: [.process("Sources/ButtonCell.xib")],
       publicHeadersPath: "XLPagerTabStrip"),
