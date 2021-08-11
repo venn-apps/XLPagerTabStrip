@@ -55,6 +55,7 @@ public struct ButtonBarPagerTabStripSettings {
         // Custom Venn Apps properties
         public var selectedButtonItemBackgroundColor: UIColor?
         public var selectedButtonItemTitleColor: UIColor?
+        public var selectedButtonBarItemFont: UIFont?
 
         public var buttonBarItemBackgroundColor: UIColor?
         public var buttonBarItemFont = UIFont.systemFont(ofSize: 18)
@@ -339,7 +340,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         let isSelected = indexPath.row == selectedIndex
 
         cell.label.text = indicatorInfo.title
-        cell.label.font = settings.style.buttonBarItemFont
+        cell.label.font = isSelected ? settings.style.selectedButtonBarItemFont ?? settings.style.buttonBarItemFont  : settings.style.buttonBarItemFont
         cell.label.textColor = isSelected
             ? settings.style.selectedButtonItemTitleColor ?? cell.label.textColor
             : settings.style.buttonBarItemTitleColor ?? cell.label.textColor
