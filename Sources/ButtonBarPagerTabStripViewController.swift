@@ -80,6 +80,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
     @IBOutlet public weak var buttonBarView: ButtonBarView!
 
     private var shouldUpdateContent = true
+    private var selectedIndex = 0
 
     lazy private var cachedCellWidths: [CGFloat]? = { [unowned self] in
         return self.calculateWidths()
@@ -316,6 +317,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
             }
         }
         moveToViewController(at: indexPath.item)
+        selectedIndex = indexPath.item
         buttonBarView.reloadData()
     }
 
@@ -334,7 +336,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
 
         let childController = viewControllers[indexPath.item] as! IndicatorInfoProvider // swiftlint:disable:this force_cast
         let indicatorInfo = childController.indicatorInfo(for: self)
-        let isSelected = indexPath.row == currentIndex
+        let isSelected = indexPath.row == selectedIndex
 
         cell.label.text = indicatorInfo.title
         cell.label.font = settings.style.buttonBarItemFont
