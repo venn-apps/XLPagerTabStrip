@@ -248,7 +248,6 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
             let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: collectionViewDidLoad)
             changeCurrentIndex(cells.first!, cells.last!, true)
         }
-        buttonBarView.reloadData()
     }
 
     open func updateIndicator(for viewController: PagerTabStripViewController, fromIndex: Int, toIndex: Int, withProgressPercentage progressPercentage: CGFloat, indexWasChanged: Bool) {
@@ -261,7 +260,6 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
             let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: collectionViewDidLoad)
             changeCurrentIndexProgressive(cells.first!, cells.last!, progressPercentage, indexWasChanged, true)
         }
-        buttonBarView.reloadData()
     }
 
     private func cellForItems(at indexPaths: [IndexPath], reloadIfNotVisible reload: Bool = true) -> [ButtonBarViewCell?] {
@@ -318,6 +316,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
             }
         }
         moveToViewController(at: indexPath.item)
+        buttonBarView.reloadData()
     }
 
     // MARK: - UICollectionViewDataSource
