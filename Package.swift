@@ -15,7 +15,7 @@ let package = Package(
       name: "XLPagerTabStrip",
       dependencies: ["FXPageControl"],
       path: "Sources",
-      resources: [.process("Sources/ButtonCell.xib")],
+      resources: [.process("ButtonCell.xib")],
       publicHeadersPath: "XLPagerTabStrip"),
     .testTarget(
       name: "XLPagerTabStripTests",
