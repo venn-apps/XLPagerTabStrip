@@ -380,6 +380,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
 
         guard scrollView == containerView else { return }
         shouldUpdateButtonBarView = true
+        buttonBarView.reloadData()
     }
 
     open func configureCell(_ cell: ButtonBarViewCell, indicatorInfo: IndicatorInfo) {
